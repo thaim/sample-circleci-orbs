@@ -1,0 +1,19 @@
+version: 2.1
+
+orbs:
+  cli: circleci/circleci-cli@0.1.5
+
+jobs:
+  validation:
+    executor: cli/default
+    steps:
+      - cli/install
+      - checkout
+      - run:
+          name: validation
+          command: circleci orb validate ./src/orb.yml
+
+workflows:
+  main:
+    jobs:
+      - validation
